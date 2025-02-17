@@ -1,0 +1,60 @@
+
+<div class="slide-container">
+<div class="slide active">
+<div class="question">Can you be my girlfriend?</div>
+<div class="answer">
+<button id="yes-btn">Yes</button>
+<button>No</button>
+</div>
+</div>
+<div class="slide inactive">
+<div class="question">Answer these extra questions, please say yes!</div>
+<div class="answer">
+<div class="extra-questions" style="display:none;">
+<p>1. Can I call you mommy?</p>
+<button class="yes-no-btn" data-question="1">Yes/No</button>
+<span class="response-1 happy-face"></span>
+<span class="response-1 sad-face"></span>
+<p>2. Can I have your social accounts? If it's okay</p>
+<button class="yes-no-btn" data-question="2">Yes/No</button>
+<span class="response-2 happy-face"></span>
+<span class="response-2 sad-face"></span>
+<p>3. Can you surprise me with ur gorgeous selfie everyday?</p>
+<button class="yes-no-btn" data-question="3">Yes/No</button>
+<span class="response-3 happy-face"></span>
+<span class="response-3 sad-face"></span>
+<p>4. Can we meet up soon as u become 18 years old?</p>
+<button class="yes-no-btn" data-question="4">Yes/No</button>
+<span class="response-4 happy-face"></span>
+<span class="response-4 sad-face"></span>
+</div>
+</div>
+</div>
+</div>
+
+<script>
+document.getElementById("yes-btn").addEventListener("click", function() {
+document.querySelectorAll(".slide")[0].classList.remove("active");
+document.querySelectorAll(".slide")[0].classList.add("inactive");
+document.querySelectorAll(".slide")[1].classList.remove("inactive");
+document.querySelectorAll(".slide")[1].classList.add("active");
+setTimeout(function() {
+document.querySelector(".extra-questions").style.display = "block";
+}, 500);
+});
+document.querySelectorAll(".yes-no-btn").forEach(function(button) {
+button.addEventListener("click", function() {
+var questionNumber = button.getAttribute("data-question");
+var responseElement = document.querySelector(".response-" + questionNumber);
+if (confirm("Are you sure?")) {
+responseElement.innerHTML = ":)";
+responseElement.classList.add("happy-face");
+responseElement.classList.remove("sad-face");
+} else {
+responseElement.innerHTML = ":(";
+responseElement.classList.add("sad-face");
+responseElement.classList.remove("happy-face");
+}
+});
+});
+</script>
